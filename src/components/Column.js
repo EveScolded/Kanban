@@ -1,10 +1,18 @@
-//import { useState } from "react";
+import { useState } from "react";
 import classes from "./Column.module.css";
 import Task from "./tasks/Task";
+import TaskModal from "./tasks/TaskModal";
 
 const Column = (props) => {
+  const [showTaskModal, setShowTaskModal] = useState(false);
   const addNewTask = (e) => {
     e.preventDefault();
+    setShowTaskModal(true);
+  };
+
+  const modalClose = (e) => {
+    e.preventDefault();
+    setShowTaskModal(false);
   };
 
   return (
@@ -16,6 +24,7 @@ const Column = (props) => {
       <button className={classes.addTaskBtn} onClick={addNewTask}>
         + add new task
       </button>
+      {showTaskModal && <TaskModal onClose={modalClose} />}
     </div>
   );
 };
