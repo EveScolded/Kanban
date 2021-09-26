@@ -1,0 +1,18 @@
+.taskList {
+  margin: 4px 0;
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: #035e7b;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task {
+  margin: 0;
+}
+
+.editBtn {
+  background: none;
+  border: none;
+  color: white;
+}
