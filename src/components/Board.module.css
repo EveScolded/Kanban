@@ -35,7 +35,7 @@ input {
   border-radius: 8px;
   width: 214px;
   height: 20px;
-  padding: 2px;
+  padding: 2px 6px;
   box-shadow: none;
   border: solid 1px #002e2c;
 }

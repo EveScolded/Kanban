@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./Task.module.css";
 import TaskModal from "./TaskModal";
 
 const Task = (props) => {
   const [showModal, setShowModal] = useState(false);
+  const newTaskNameInputRef = useRef();
+  const newTaskDescriptionInputRef = useRef();
 
   const editTask = () => {
     setShowModal(true);
@@ -19,7 +21,15 @@ const Task = (props) => {
       <button className={classes.editBtn} onClick={editTask}>
         🖊
       </button>
-      {showModal && <TaskModal taskCtn={props.task} onClose={closeTask} />}
+      {showModal && (
+        <TaskModal
+          taskCtn={props.task}
+          onClose={closeTask}
+          // onSaveTask={saveNewTask}
+          taskNameRef={newTaskNameInputRef}
+          taskDescriptionRef={newTaskDescriptionInputRef}
+        />
+      )}
     </div>
   );
 };

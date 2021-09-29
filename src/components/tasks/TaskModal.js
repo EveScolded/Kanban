@@ -10,7 +10,9 @@ const TaskModal = (props) => {
 
   const saveAddTask = (e) => {
     e.preventDefault();
+    props.onSaveTask();
   };
+
   const cancelAddTask = (e) => {
     e.preventDefault();
     props.onClose();
@@ -25,30 +27,32 @@ const TaskModal = (props) => {
   };
 
   return (
-    <from>
+    <from className={classes.form}>
       <div className={classes.overlay}></div>
       <div className={classes.modal}>
-        <label>Task title</label>
+        <label className={classes.label}>Task title</label>
         <input
           type="text"
           className={classes.titleInput}
           value={taskTitle}
           onChange={changeTitle}
+          ref={props.taskNameRef}
         ></input>
 
-        <label>Task description</label>
-        <input
+        <label className={classes.label}>Task description</label>
+        <textarea
           type="text"
           className={classes.descriptionInput}
           value={taskDescription}
           onChange={changeDescription}
-        ></input>
+          ref={props.taskDescriptionRef}
+        ></textarea>
 
-        <div>
-          <button className={classes.addTaskBtns} onClick={saveAddTask}>
+        <div className={classes.addTaskBtnsContainer}>
+          <button className={classes.addTaskBtn} onClick={saveAddTask}>
             ✔
           </button>
-          <button className={classes.addTaskBtns} onClick={cancelAddTask}>
+          <button className={classes.addTaskBtn} onClick={cancelAddTask}>
             ✖
           </button>
         </div>

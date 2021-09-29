@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./Column.module.css";
 import Task from "./tasks/Task";
 import TaskModal from "./tasks/TaskModal";
 
 const Column = (props) => {
   const [showTaskModal, setShowTaskModal] = useState(false);
+
   const addNewTask = (e) => {
     e.preventDefault();
     setShowTaskModal(true);

@@ -12,6 +12,8 @@
   background: #035e7b;
   color: black;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .overlay {
@@ -24,9 +26,55 @@
   z-index: 1;
 }
 
-.closeBtn {
+.form {
+}
+
+.descriptionInput {
+  height: 300px;
+  width: 95%;
+  margin: 10px;
+  font-family: inherit;
+  border-radius: 8px;
+  padding: 2px 6px;
+  box-shadow: none;
+  border: solid 1px #002e2c;
+}
+
+.titleInput {
+  margin: 10px;
+  width: 95%;
+}
+
+.addTaskBtnsContainer {
   color: black;
   position: absolute;
   right: 8px;
   bottom: 8px;
+}
+
+.label {
+  color: white;
+}
+
+.addTaskBtn {
+  box-shadow: 0px 10px 14px -7px #002e2c;
+  background: linear-gradient(to bottom, #033e61 5%, #012a38 100%);
+  background-color: #033141;
+  border-radius: 8px;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 6px 12px;
+  margin: 4px 6px 2px 0;
+  text-shadow: 0px 1px 0px #033857;
+}
+.addTaskBtn:hover {
+  background: linear-gradient(to bottom, #012a38 5%, #033e61 100%);
+  background-color: #035e7b;
+}
+.addTaskBtn:active {
+  position: relative;
+  top: 1px;
 }
