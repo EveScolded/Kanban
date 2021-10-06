@@ -1,17 +1,20 @@
 import { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Column from "./Column";
 import classes from "./Board.module.css";
 
-//title, position, taskList <---columnList
-
 const Board = (props) => {
-  const [board, setBoard] = useState(null);
   const [addingColumn, setAddingColumn] = useState(false);
   const newColumnInputRef = useRef();
 
+  const dispatch = useDispatch();
+  const board = useSelector((state) => state);
+
   useEffect(() => {
     props.provider.getBoard().then((response) => {
-      response.json().then(setBoard);
+      response.json().then((board) => {
+        dispatch({ type: "INIT", board: board });
+      });
     });
   }, []);
 
@@ -23,13 +26,14 @@ const Board = (props) => {
     e.preventDefault();
     const enteredColumnName = newColumnInputRef.current.value;
 
-    const newBoard = { ...board };
-    newBoard.columns.push({
-      title: enteredColumnName,
-      position: 3,
-      taskList: [],
+    dispatch({
+      type: "SAVE_COLUMN",
+      column: {
+        title: enteredColumnName,
+        position: 3,
+        taskList: [],
+      },
     });
-    setBoard(newBoard);
 
     setAddingColumn(false);
   };
@@ -42,8 +46,9 @@ const Board = (props) => {
   return (
     <div className={classes.board}>
       {board &&
-        board.columns.map((column) => (
-          <Column column={column} key={column.position} />
+        board.columns &&
+        board.columns.map((column, index) => (
+          <Column column={column} columnIndex={index} key={column.position} />
         ))}
       {!addingColumn && (
         <button className={classes.addBtn} onClick={addNewColumn}>
