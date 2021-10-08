@@ -12,6 +12,7 @@ const Board = (props) => {
 
   useEffect(() => {
     props.provider.getBoard().then((response) => {
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       response.json().then((board) => {
         dispatch({ type: "INIT", board: board });
       });
@@ -36,6 +37,7 @@ const Board = (props) => {
     });
 
     setAddingColumn(false);
+    props.provider.saveBoard(board);
   };
 
   const cancelAddColumn = (e) => {

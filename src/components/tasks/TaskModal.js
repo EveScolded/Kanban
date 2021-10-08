@@ -1,7 +1,6 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import classes from "./TaskModal.module.css";
-import { useSelector, useDispatch } from "react-redux";
 
 const TaskModal = (props) => {
   const [taskTitle, setTaskTitle] = useState(props.taskCtn.title);

@@ -23,11 +23,20 @@ export default class MockBoardProvider {
 
   getBoard() {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          json: () => Promise.resolve(this.mockBoard),
-        });
-      }, 500);
+      const myBoard = localStorage.getItem("board");
+      if (myBoard) {
+        resolve({ json: () => Promise.resolve(JSON.parse(myBoard)) });
+      } else {
+        setTimeout(() => {
+          resolve({
+            json: () => Promise.resolve(this.mockBoard),
+          });
+        }, 500);
+      }
     });
+  }
+
+  saveBoard(board) {
+    localStorage.setItem("board", JSON.stringify(board));
   }
 }

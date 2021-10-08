@@ -5,7 +5,7 @@ import MockBoardProvider from "./dal/MockBoardProvider";
 function App() {
   return (
     <div className="App">
-      <header>KANBAN</header>
+      <header className={classes.header}>KANBAN</header>
       <Board provider={new MockBoardProvider()} />
     </div>
   );
