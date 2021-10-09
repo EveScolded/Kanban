@@ -17,6 +17,10 @@ const boardReducer = (state = {}, action) => {
       action.task
     );
   }
+  if (action.type === "MOVE_TASK") {
+    newState.columns[action.columnIndex].taskList.push(action.task);
+  }
+
   if (action.type === "DELETE_TASK") {
     newState.columns[action.columnIndex].taskList.splice(action.taskIndex, 1);
   }

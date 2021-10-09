@@ -29,9 +29,11 @@ const TaskModal = (props) => {
     setTaskDescription(event.target.value);
   };
 
-  const columnTitles = useSelector((state) =>
-    state.columns.map((column) => column.title)
-  );
+  const columnTitles = useSelector((state) => {
+    let array = state.columns.map((column) => column.title);
+    array.splice(props.columnIndex, 1);
+    return array;
+  });
 
   return (
     <from className={classes.form}>

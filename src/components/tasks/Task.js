@@ -52,6 +52,7 @@ const Task = (props) => {
         <TaskModal
           taskCtn={props.task}
           onClose={closeTask}
+          columnIndex={props.columnIndex}
           onSaveTask={saveTask}
           onDeleteTask={deleteTask}
           taskNameRef={newTaskNameInputRef}
