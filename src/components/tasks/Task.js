@@ -30,6 +30,16 @@ const Task = (props) => {
       },
     });
     setShowModal(false);
+    props.onSaveBoard();
+  };
+
+  const deleteTask = () => {
+    dispatch({
+      type: "DELETE_TASK",
+      columnIndex: props.columnIndex,
+      taskIndex: props.taskIndex,
+    });
+    props.onSaveBoard();
   };
 
   return (
@@ -43,6 +53,7 @@ const Task = (props) => {
           taskCtn={props.task}
           onClose={closeTask}
           onSaveTask={saveTask}
+          onDeleteTask={deleteTask}
           taskNameRef={newTaskNameInputRef}
           taskDescriptionRef={newTaskDescriptionInputRef}
         />

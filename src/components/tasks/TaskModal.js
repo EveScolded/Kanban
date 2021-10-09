@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import classes from "./TaskModal.module.css";
+import { useSelector } from "react-redux";
 
 const TaskModal = (props) => {
   const [taskTitle, setTaskTitle] = useState(props.taskCtn.title);
@@ -8,14 +9,16 @@ const TaskModal = (props) => {
     props.taskCtn.description
   );
 
-  const saveAddTask = (e) => {
-    e.preventDefault();
+  const saveAddTask = () => {
     props.onSaveTask(taskTitle, taskDescription);
   };
 
-  const cancelAddTask = (e) => {
-    e.preventDefault();
+  const cancelAddTask = () => {
     props.onClose();
+  };
+
+  const deleteTask = () => {
+    props.onDeleteTask();
   };
 
   const changeTitle = (event) => {
@@ -25,6 +28,10 @@ const TaskModal = (props) => {
   const changeDescription = (event) => {
     setTaskDescription(event.target.value);
   };
+
+  const columnTitles = useSelector((state) =>
+    state.columns.map((column) => column.title)
+  );
 
   return (
     <from className={classes.form}>
@@ -48,13 +55,24 @@ const TaskModal = (props) => {
           ref={props.taskDescriptionRef}
         ></textarea>
 
-        <div className={classes.addTaskBtnsContainer}>
-          <button className={classes.addTaskBtn} onClick={saveAddTask}>
+        <div className={classes.modalTaskBtnsContainer}>
+          <button className={classes.modalTaskBtn} onClick={saveAddTask}>
             ✔
           </button>
-          <button className={classes.addTaskBtn} onClick={cancelAddTask}>
+          <button className={classes.modalTaskBtn} onClick={cancelAddTask}>
             ✖
           </button>
+          <button className={classes.modalTaskBtn} onClick={deleteTask}>
+            Delete
+          </button>
+          <div className={classes.dropdown}>
+            <button className={classes.modalTaskBtn}>Move to</button>
+            <div className={classes.dropdownContent}>
+              {columnTitles.map((title) => (
+                <a>{title}</a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </from>

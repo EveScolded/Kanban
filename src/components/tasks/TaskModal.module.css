@@ -45,10 +45,10 @@
   width: 95%;
 }
 
-.addTaskBtnsContainer {
+.modalTaskBtnsContainer {
   color: black;
   position: absolute;
-  right: 8px;
+  left: 8px;
   bottom: 8px;
 }
 
@@ -56,10 +56,11 @@
   color: white;
 }
 
-.addTaskBtn {
+.modalTaskBtn {
   box-shadow: 0px 10px 14px -7px #002e2c;
   background: linear-gradient(to bottom, #033e61 5%, #012a38 100%);
   background-color: #033141;
+  height: 30px;
   border-radius: 8px;
   border: 1px solid black;
   display: inline-block;
@@ -70,11 +71,47 @@
   margin: 4px 6px 2px 0;
   text-shadow: 0px 1px 0px #033857;
 }
-.addTaskBtn:hover {
+.modalTaskBtn:hover {
   background: linear-gradient(to bottom, #012a38 5%, #033e61 100%);
   background-color: #035e7b;
 }
-.addTaskBtn:active {
+.modalTaskBtn:active {
   position: relative;
   top: 1px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdownContent {
+  display: none;
+  position: absolute;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdownContent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdownContent a:hover {
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdownContent {
+  display: block;
 }

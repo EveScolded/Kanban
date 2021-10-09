@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./Column.module.css";
 import Task from "./tasks/Task";
 import TaskModal from "./tasks/TaskModal";
@@ -9,13 +9,11 @@ const Column = (props) => {
   const [editColumn, setEditColumn] = useState(false);
   const [columnTitle, setColumnTitle] = useState(props.column.title);
 
-  const addNewTask = (e) => {
-    e.preventDefault();
+  const addNewTask = () => {
     setShowTaskModal(true);
   };
 
-  const modalClose = (e) => {
-    e.preventDefault();
+  const modalClose = () => {
     setShowTaskModal(false);
   };
 
@@ -32,6 +30,7 @@ const Column = (props) => {
       },
     });
     setShowTaskModal(false);
+    props.onSaveBoard();
   };
 
   const editColumnHandler = (e) => {
@@ -53,10 +52,20 @@ const Column = (props) => {
         taskList: props.column.taskList,
       },
     });
+    setEditColumn(false);
+    props.onSaveBoard();
   };
 
   const cancelChangeTitle = () => {
     setEditColumn(false);
+  };
+
+  const deleteColumn = () => {
+    dispatch({
+      type: "DELETE_COLUMN",
+      columnIndex: props.columnIndex,
+    });
+    props.onSaveBoard();
   };
 
   return (
@@ -71,7 +80,7 @@ const Column = (props) => {
           </div>
         )}
         {editColumn && (
-          <div className={classes.header}>
+          <div className={classes.headerEdit}>
             <input
               type="text"
               //className={classes.titleInput}
@@ -79,15 +88,17 @@ const Column = (props) => {
               onChange={changeColumnTitle}
               //ref={props.taskNameRef}
             ></input>
-            <button //className={classes.addTaskBtn}
-              onClick={saveChangeTitle}
-            >
+            <button className={classes.editColumnBtn} onClick={saveChangeTitle}>
               ✔
             </button>
-            <button //className={classes.addTaskBtn}
+            <button
+              className={classes.editColumnBtn}
               onClick={cancelChangeTitle}
             >
               ✖
+            </button>
+            <button className={classes.editColumnBtn} onClick={deleteColumn}>
+              Delete
             </button>
           </div>
         )}
@@ -96,6 +107,7 @@ const Column = (props) => {
         <Task
           columnIndex={props.columnIndex}
           taskIndex={index}
+          onSaveBoard={props.onSaveBoard}
           task={task}
           key={task.position}
         />
