@@ -1,0 +1,23 @@
+.button {
+  box-shadow: 0px 10px 14px -7px #002e2c;
+  background: linear-gradient(to bottom, #033e61 5%, #012a38 100%);
+  background-color: #033141;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 6px 12px;
+  margin: 4px 6px 2px 0;
+  text-shadow: 0px 1px 0px #033857;
+}
+.button:hover {
+  background: linear-gradient(to bottom, #012a38 5%, #033e61 100%);
+  background-color: #035e7b;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}

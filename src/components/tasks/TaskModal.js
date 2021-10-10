@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import classes from "./TaskModal.module.css";
 import { useSelector } from "react-redux";
+import BlueButton from "../UI/BlueButton";
 
 const TaskModal = (props) => {
   const [taskTitle, setTaskTitle] = useState(props.taskCtn.title);
@@ -42,7 +43,7 @@ const TaskModal = (props) => {
   };
 
   return (
-    <from className={classes.form}>
+    <from>
       <div className={classes.overlay}></div>
       <div className={classes.modal}>
         <label className={classes.label}>Task title</label>
@@ -64,17 +65,11 @@ const TaskModal = (props) => {
         ></textarea>
 
         <div className={classes.modalTaskBtnsContainer}>
-          <button className={classes.modalTaskBtn} onClick={saveAddTask}>
-            ✔
-          </button>
-          <button className={classes.modalTaskBtn} onClick={cancelAddTask}>
-            ✖
-          </button>
-          <button className={classes.modalTaskBtn} onClick={deleteTask}>
-            Delete
-          </button>
+          <BlueButton onClick={saveAddTask}>✔</BlueButton>
+          <BlueButton onClick={cancelAddTask}>✖</BlueButton>
+          <BlueButton onClick={deleteTask}>Delete</BlueButton>
           <div className={classes.dropdown}>
-            <button className={classes.modalTaskBtn}>Move to</button>
+            <BlueButton>Move to</BlueButton>
             <div className={classes.dropdownContent}>
               {columns.map((column) => (
                 <a onClick={() => moveTask(column.index)}>{column.title}</a>

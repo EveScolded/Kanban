@@ -3,6 +3,7 @@ import classes from "./Column.module.css";
 import Task from "./tasks/Task";
 import TaskModal from "./tasks/TaskModal";
 import { useDispatch } from "react-redux";
+import GreenButton from "./UI/GreenButton";
 
 const Column = (props) => {
   const [showTaskModal, setShowTaskModal] = useState(false);
@@ -88,18 +89,9 @@ const Column = (props) => {
               onChange={changeColumnTitle}
               //ref={props.taskNameRef}
             ></input>
-            <button className={classes.editColumnBtn} onClick={saveChangeTitle}>
-              ✔
-            </button>
-            <button
-              className={classes.editColumnBtn}
-              onClick={cancelChangeTitle}
-            >
-              ✖
-            </button>
-            <button className={classes.editColumnBtn} onClick={deleteColumn}>
-              Delete
-            </button>
+            <GreenButton onClick={saveChangeTitle}>✔</GreenButton>
+            <GreenButton onClick={cancelChangeTitle}>✖</GreenButton>
+            <GreenButton onClick={deleteColumn}>Delete</GreenButton>
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Column from "./Column";
 import classes from "./Board.module.css";
+import GreenButton from "./UI/GreenButton";
 
 const Board = (props) => {
   const [addingColumn, setAddingColumn] = useState(false);
@@ -50,7 +51,12 @@ const Board = (props) => {
 
   return (
     <div>
-      <h2 className={classes.boardName}>{board.title}</h2>
+      <div className={classes.boardHeader}>
+        <GreenButton>Switch board</GreenButton>
+        <div className={classes.dropdownBoardsList}>{<a>{}</a>}</div>
+        <h2 className={classes.boardTitle}>{board.title}</h2>
+      </div>
+
       <div className={classes.board}>
         {board &&
           board.columns &&
@@ -74,12 +80,18 @@ const Board = (props) => {
               placeholder="enter column name"
               ref={newColumnInputRef}
             />
-            <button className={classes.addColumnBtns} onClick={saveAddColumn}>
+            <GreenButton
+              className={classes.addColumnBtns}
+              onClick={saveAddColumn}
+            >
               ✔
-            </button>
-            <button className={classes.addColumnBtns} onClick={cancelAddColumn}>
+            </GreenButton>
+            <GreenButton
+              className={classes.addColumnBtns}
+              onClick={cancelAddColumn}
+            >
               ✖
-            </button>
+            </GreenButton>
           </form>
         )}
       </div>

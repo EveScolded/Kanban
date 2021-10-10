@@ -2,6 +2,7 @@ import Board from "./components/Board";
 import classes from "./App.module.css";
 import MockBoardProvider from "./dal/MockBoardProvider";
 import { useState } from "react";
+import GreenButton from "./components/UI/GreenButton";
 
 function App() {
   const [logIn, setLogIn] = useState(false);
@@ -14,9 +15,9 @@ function App() {
       <h1 className={classes.header}>KANBAN</h1>
       {!logIn && (
         <div className={classes.buttonConteiner}>
-          <button className={classes.signInBtn} onClick={loggingToGoogle}>
+          <GreenButton onClick={loggingToGoogle}>
             Sign in with Google account
-          </button>
+          </GreenButton>
         </div>
       )}
       {logIn && <Board provider={new MockBoardProvider()} />}
