@@ -42,6 +42,21 @@ const Task = (props) => {
     props.onSaveBoard();
   };
 
+  const moveTask = (taskTitle, taskDescription, targetColumnIndex) => {
+    dispatch({
+      type: "MOVE_TASK",
+      columnIndex: props.columnIndex,
+      taskIndex: props.taskIndex,
+      targetColumnIndex: targetColumnIndex,
+      task: {
+        title: taskTitle,
+        position: props.task.position,
+        description: taskDescription,
+      },
+    });
+    props.onSaveBoard();
+  };
+
   return (
     <div className={classes.taskList}>
       <h4 className={classes.task}>{props.task.title}</h4>
@@ -55,6 +70,7 @@ const Task = (props) => {
           columnIndex={props.columnIndex}
           onSaveTask={saveTask}
           onDeleteTask={deleteTask}
+          onMoveTask={moveTask}
           taskNameRef={newTaskNameInputRef}
           taskDescriptionRef={newTaskDescriptionInputRef}
         />

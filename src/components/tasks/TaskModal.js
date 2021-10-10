@@ -29,11 +29,17 @@ const TaskModal = (props) => {
     setTaskDescription(event.target.value);
   };
 
-  const columnTitles = useSelector((state) => {
-    let array = state.columns.map((column) => column.title);
+  const columns = useSelector((state) => {
+    let array = state.columns.map((column, index) => {
+      return { title: column.title, index: index };
+    });
     array.splice(props.columnIndex, 1);
     return array;
   });
+
+  const moveTask = (targetColumnIndex) => {
+    props.onMoveTask(taskTitle, taskDescription, targetColumnIndex);
+  };
 
   return (
     <from className={classes.form}>
@@ -70,8 +76,8 @@ const TaskModal = (props) => {
           <div className={classes.dropdown}>
             <button className={classes.modalTaskBtn}>Move to</button>
             <div className={classes.dropdownContent}>
-              {columnTitles.map((title) => (
-                <a>{title}</a>
+              {columns.map((column) => (
+                <a onClick={() => moveTask(column.index)}>{column.title}</a>
               ))}
             </div>
           </div>
