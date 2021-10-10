@@ -80,7 +80,7 @@ const Column = (props) => {
           </div>
         )}
         {editColumn && (
-          <div className={classes.headerEdit}>
+          <div>
             <input
               type="text"
               //className={classes.titleInput}
@@ -109,7 +109,7 @@ const Column = (props) => {
           taskIndex={index}
           onSaveBoard={props.onSaveBoard}
           task={task}
-          key={task.position}
+          key={task.title}
         />
       ))}
       <button className={classes.addTaskBtn} onClick={addNewTask}>

@@ -21,6 +21,25 @@ const boardReducer = (state = {}, action) => {
     newState.columns[action.columnIndex].taskList.splice(action.taskIndex, 1);
     newState.columns[action.targetColumnIndex].taskList.push(action.task);
   }
+  if (action.type === "MOVE_TASK_UP") {
+    if (action.taskIndex > 0) {
+      newState.columns[action.columnIndex].taskList.move(
+        action.taskIndex,
+        action.taskIndex - 1
+      );
+    }
+  }
+  if (action.type === "MOVE_TASK_DOWN") {
+    if (
+      action.taskIndex <
+      newState.columns[action.columnIndex].taskList.length - 1
+    ) {
+      newState.columns[action.columnIndex].taskList.move(
+        action.taskIndex,
+        action.taskIndex + 1
+      );
+    }
+  }
 
   if (action.type === "DELETE_TASK") {
     newState.columns[action.columnIndex].taskList.splice(action.taskIndex, 1);

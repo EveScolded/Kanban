@@ -49,37 +49,40 @@ const Board = (props) => {
   };
 
   return (
-    <div className={classes.board}>
-      {board &&
-        board.columns &&
-        board.columns.map((column, index) => (
-          <Column
-            column={column}
-            onSaveBoard={saveBoardToStorage}
-            columnIndex={index}
-            key={column.position}
-          />
-        ))}
-      {!addingColumn && (
-        <button className={classes.addBtn} onClick={addNewColumn}>
-          + add new column
-        </button>
-      )}
-      {addingColumn && (
-        <form className={classes.addColumnForm}>
-          <input
-            type="text"
-            placeholder="enter column name"
-            ref={newColumnInputRef}
-          />
-          <button className={classes.addColumnBtns} onClick={saveAddColumn}>
-            ✔
+    <div>
+      <h2 className={classes.boardName}>{board.title}</h2>
+      <div className={classes.board}>
+        {board &&
+          board.columns &&
+          board.columns.map((column, index) => (
+            <Column
+              column={column}
+              onSaveBoard={saveBoardToStorage}
+              columnIndex={index}
+              key={column.position}
+            />
+          ))}
+        {!addingColumn && (
+          <button className={classes.addBtn} onClick={addNewColumn}>
+            + add new column
           </button>
-          <button className={classes.addColumnBtns} onClick={cancelAddColumn}>
-            ✖
-          </button>
-        </form>
-      )}
+        )}
+        {addingColumn && (
+          <form className={classes.addColumnForm}>
+            <input
+              type="text"
+              placeholder="enter column name"
+              ref={newColumnInputRef}
+            />
+            <button className={classes.addColumnBtns} onClick={saveAddColumn}>
+              ✔
+            </button>
+            <button className={classes.addColumnBtns} onClick={cancelAddColumn}>
+              ✖
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };

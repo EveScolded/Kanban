@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import classes from "./Task.module.css";
 import TaskModal from "./TaskModal";
 import { useDispatch } from "react-redux";
+import "array.prototype.move";
 
 const Task = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -57,12 +58,39 @@ const Task = (props) => {
     props.onSaveBoard();
   };
 
+  const moveTaskUp = () => {
+    dispatch({
+      type: "MOVE_TASK_UP",
+      columnIndex: props.columnIndex,
+      taskIndex: props.taskIndex,
+    });
+    props.onSaveBoard();
+  };
+
+  const moveTaskDown = () => {
+    dispatch({
+      type: "MOVE_TASK_DOWN",
+      columnIndex: props.columnIndex,
+      taskIndex: props.taskIndex,
+    });
+    props.onSaveBoard();
+  };
+
   return (
     <div className={classes.taskList}>
       <h4 className={classes.task}>{props.task.title}</h4>
-      <button className={classes.editBtn} onClick={editTask}>
-        🖊
-      </button>
+      <div>
+        <button className={classes.editBtn} onClick={moveTaskUp}>
+          🡅
+        </button>
+        <button className={classes.editBtn} onClick={moveTaskDown}>
+          🡇
+        </button>
+        <button className={classes.editBtn} onClick={editTask}>
+          🖊
+        </button>
+      </div>
+
       {showModal && (
         <TaskModal
           taskCtn={props.task}
