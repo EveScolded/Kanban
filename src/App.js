@@ -1,8 +1,12 @@
 import Board from "./components/Board";
 import classes from "./App.module.css";
 import MockBoardProvider from "./dal/MockBoardProvider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import GreenButton from "./components/UI/GreenButton";
+import Kanban from "./components/Kanban";
+
+const provider = new MockBoardProvider();
 
 function App() {
   const [logIn, setLogIn] = useState(false);
@@ -20,7 +24,7 @@ function App() {
           </GreenButton>
         </div>
       )}
-      {logIn && <Board provider={new MockBoardProvider()} />}
+      {logIn && <Kanban provider={provider} />}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Column from "./Column";
 import classes from "./Board.module.css";
@@ -9,15 +9,10 @@ const Board = (props) => {
   const newColumnInputRef = useRef();
 
   const dispatch = useDispatch();
-  const board = useSelector((state) => state);
-
-  useEffect(() => {
-    props.provider.getBoard().then((response) => {
-      response.json().then((board) => {
-        dispatch({ type: "INIT", board: board });
-      });
-    });
-  }, []);
+  const board = useSelector((state) => {
+    if (state.boards) return state.boards[props.boardId];
+    return null;
+  });
 
   const addNewColumn = () => {
     setAddingColumn(true);
@@ -52,9 +47,16 @@ const Board = (props) => {
   return (
     <div>
       <div className={classes.boardHeader}>
-        <GreenButton>Switch board</GreenButton>
-        <div className={classes.dropdownBoardsList}>{<a>{}</a>}</div>
-        <h2 className={classes.boardTitle}>{board.title}</h2>
+        <div className={classes.dropdown}>
+          <GreenButton>Switch board</GreenButton>
+          {
+            <div className={classes.dropdownContent}>
+              <a>{board && board.title}</a>
+              <button>+ add new board</button>
+            </div>
+          }
+        </div>
+        <h2 className={classes.boardTitle}>{board && board.title}</h2>
       </div>
 
       <div className={classes.board}>
