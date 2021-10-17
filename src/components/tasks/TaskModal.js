@@ -31,9 +31,11 @@ const TaskModal = (props) => {
   };
 
   const columns = useSelector((state) => {
-    let array = state.columns.map((column, index) => {
-      return { title: column.title, index: index };
-    });
+    let array = state.boards[state.currentBoardIndex].columns.map(
+      (column, index) => {
+        return { title: column.title, index: index };
+      }
+    );
     array.splice(props.columnIndex, 1);
     return array;
   });

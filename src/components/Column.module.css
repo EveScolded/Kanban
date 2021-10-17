@@ -22,12 +22,6 @@
   background: #23667cc7;
 }
 
-.editBtn {
-  background: none;
-  border: none;
-  color: white;
-}
-
 .header {
   display: flex;
   flex-direction: row;

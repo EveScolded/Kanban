@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Board from "./Board";
+import Board from "./boards/Board";
+import classes from "./Kanban.module.css";
 
 const Kanban = (props) => {
   const dispatch = useDispatch();
@@ -15,10 +16,10 @@ const Kanban = (props) => {
 
   return (
     <>
-      {boards ? (
-        <Board boardId={boards.currentBoardIndex} />
+      {boards && boards.boards ? (
+        <Board boardId={boards.currentBoardIndex} provider={props.provider} />
       ) : (
-        "tu będzie spiner"
+        <div className={classes.loader}></div>
       )}
     </>
   );

@@ -1,0 +1,18 @@
+.boardTitleContainer {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  margin: 6px;
+  background: #002e2c;
+  border-radius: 8px;
+  color: #f9e9ec;
+}
+
+.boardTitle {
+  padding: 4px;
+  margin: 0;
+}
+
+.input {
+  margin: 7px;
+}

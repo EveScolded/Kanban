@@ -34,7 +34,7 @@ export default class MockBoardProvider {
       // } else {
       setTimeout(() => {
         resolve(this.mockBoards);
-      }, 500);
+      }, 300);
       // }
     });
   }

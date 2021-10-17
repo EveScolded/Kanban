@@ -5,6 +5,7 @@
   background: #035e7b;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .task {

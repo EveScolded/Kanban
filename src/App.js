@@ -1,8 +1,6 @@
-import Board from "./components/Board";
 import classes from "./App.module.css";
 import MockBoardProvider from "./dal/MockBoardProvider";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 import GreenButton from "./components/UI/GreenButton";
 import Kanban from "./components/Kanban";
 

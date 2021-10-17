@@ -8,11 +8,22 @@ const boardReducer = (state = {}, action) => {
   }
 
   let board;
+
   if (newState.boards) {
     board = newState.boards[newState.currentBoardIndex];
   }
 
   if (action.type === "SAVE_NEW_BOARD") {
+    newState.boards.push(action.board);
+    newState.currentBoardIndex = newState.boards.length - 1;
+  }
+
+  if (action.type === "SWITCH_BOARD") {
+    newState.currentBoardIndex = action.newIndex;
+  }
+
+  if (action.type === "UPDATE_BOARD_TITLE") {
+    newState.boards[newState.currentBoardIndex].title = action.newTitle;
   }
 
   if (action.type === "SAVE_NEW_TASK") {

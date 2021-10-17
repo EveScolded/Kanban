@@ -3,6 +3,7 @@ import classes from "./Task.module.css";
 import TaskModal from "./TaskModal";
 import { useDispatch } from "react-redux";
 import "array.prototype.move";
+import EditButton from "../UI/EditButton";
 
 const Task = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -86,9 +87,7 @@ const Task = (props) => {
         <button className={classes.editBtn} onClick={moveTaskDown}>
           🡇
         </button>
-        <button className={classes.editBtn} onClick={editTask}>
-          🖊
-        </button>
+        <EditButton onClick={editTask}>🖊</EditButton>
       </div>
 
       {showModal && (

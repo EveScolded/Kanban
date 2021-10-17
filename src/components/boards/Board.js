@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Column from "./Column";
+import Column from "../Column";
 import classes from "./Board.module.css";
-import GreenButton from "./UI/GreenButton";
+import GreenButton from "../UI/GreenButton";
+import BoardTitle from "./BoardTitle";
+import SwitchBoard from "./SwitchBoard";
 
 const Board = (props) => {
   const [addingColumn, setAddingColumn] = useState(false);
@@ -13,6 +15,13 @@ const Board = (props) => {
     if (state.boards) return state.boards[props.boardId];
     return null;
   });
+
+  const onSaveNewBoardTitle = (boardTitle) => {
+    dispatch({
+      type: "UPDATE_BOARD_TITLE",
+      newTitle: boardTitle,
+    });
+  };
 
   const addNewColumn = () => {
     setAddingColumn(true);
@@ -47,16 +56,11 @@ const Board = (props) => {
   return (
     <div>
       <div className={classes.boardHeader}>
-        <div className={classes.dropdown}>
-          <GreenButton>Switch board</GreenButton>
-          {
-            <div className={classes.dropdownContent}>
-              <a>{board && board.title}</a>
-              <button>+ add new board</button>
-            </div>
-          }
-        </div>
-        <h2 className={classes.boardTitle}>{board && board.title}</h2>
+        <SwitchBoard saveBoardToStorage={saveBoardToStorage} />
+        <BoardTitle
+          title={board.title}
+          onSaveNewBoardTitle={onSaveNewBoardTitle}
+        />
       </div>
 
       <div className={classes.board}>
