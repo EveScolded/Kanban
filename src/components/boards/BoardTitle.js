@@ -1,11 +1,15 @@
 import classes from "./BoardTitle.module.css";
 import EditButton from "../UI/EditButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GreenButton from "../UI/GreenButton";
 
 const BoardTitle = (props) => {
   const [editBoardTitle, setEdtiBoardTitle] = useState(false);
   const [boardTitle, setBoardTitle] = useState(props.title);
+
+  useEffect(() => {
+    setBoardTitle(props.title);
+  }, [props.title]);
 
   const editBoardTitleHandler = () => {
     setEdtiBoardTitle(true);
