@@ -2,7 +2,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
 
-export class Board {
+export class BoardsProvider {
   app;
   db;
   auth;
@@ -37,11 +37,8 @@ export class Board {
     return myBoards;
   };
 
-  setMyBoards = async (boards, currentBoardIndex) => {
+  setMyBoards = async (kanban) => {
     const myDoc = doc(this.db, "boards", this.getCurrentUser().uid);
-    await setDoc(myDoc, {
-      boards: boards,
-      currentBoardIndex: currentBoardIndex,
-    });
+    await setDoc(myDoc, kanban);
   };
 }

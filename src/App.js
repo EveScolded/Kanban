@@ -1,28 +1,38 @@
 import classes from "./App.module.css";
-import MockBoardProvider from "./dal/MockBoardProvider";
+import { BoardsProvider } from "./dal/BoardsProvider";
 import { useState } from "react";
 import GreenButton from "./components/UI/GreenButton";
 import Kanban from "./components/Kanban";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-const provider = new MockBoardProvider();
+const firebaseConfig = {
+  apiKey: "AIzaSyDtq-wAg6dzBCQYVI4Wkt3-_5e7qcmvytg",
+  authDomain: "kanban-f9914.firebaseapp.com",
+  projectId: "kanban-f9914",
+  storageBucket: "kanban-f9914.appspot.com",
+  messagingSenderId: "273849008084",
+  appId: "1:273849008084:web:bd4ccc18e119db93216041",
+};
+
+const provider = new BoardsProvider(firebaseConfig);
 
 function App() {
-  const [logIn, setLogIn] = useState(false);
+  const [user] = useAuthState(provider.auth);
 
   const loggingToGoogle = () => {
-    setLogIn(true);
+    provider.signInWithGoogle();
   };
   return (
     <div>
       <h1 className={classes.header}>KANBAN</h1>
-      {!logIn && (
+      {!user && (
         <div className={classes.buttonConteiner}>
           <GreenButton onClick={loggingToGoogle}>
             Sign in with Google account
           </GreenButton>
         </div>
       )}
-      {logIn && <Kanban provider={provider} />}
+      {user && <Kanban provider={provider} />}
     </div>
   );
 }

@@ -10,9 +10,26 @@ const Kanban = (props) => {
 
   useEffect(() => {
     props.provider.getMyBoards().then((boards) => {
+      if (!boards) {
+        boards = {
+          currentBoardIndex: 0,
+          boards: [
+            {
+              title: "New board",
+              columns: [],
+            },
+          ],
+        };
+      }
       dispatch({ type: "INIT", boards: boards });
     });
   }, []);
+
+  useEffect(() => {
+    if (boards.boards) {
+      props.provider.setMyBoards(boards);
+    }
+  }, [boards]);
 
   return (
     <>

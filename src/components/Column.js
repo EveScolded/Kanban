@@ -32,7 +32,6 @@ const Column = (props) => {
       },
     });
     setShowTaskModal(false);
-    props.onSaveBoard();
   };
 
   const editColumnHandler = (e) => {
@@ -55,7 +54,6 @@ const Column = (props) => {
       },
     });
     setEditColumn(false);
-    props.onSaveBoard();
   };
 
   const cancelChangeTitle = () => {
@@ -67,7 +65,6 @@ const Column = (props) => {
       type: "DELETE_COLUMN",
       columnIndex: props.columnIndex,
     });
-    props.onSaveBoard();
   };
 
   return (
@@ -96,7 +93,6 @@ const Column = (props) => {
         <Task
           columnIndex={props.columnIndex}
           taskIndex={index}
-          onSaveBoard={props.onSaveBoard}
           task={task}
           key={task.title}
         />

@@ -32,7 +32,6 @@ const Task = (props) => {
       },
     });
     setShowModal(false);
-    props.onSaveBoard();
   };
 
   const deleteTask = () => {

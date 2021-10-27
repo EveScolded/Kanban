@@ -41,11 +41,6 @@ const Board = (props) => {
     });
 
     setAddingColumn(false);
-    saveBoardToStorage();
-  };
-
-  const saveBoardToStorage = () => {
-    props.provider.saveBoard(board);
   };
 
   const cancelAddColumn = (e) => {
@@ -56,7 +51,7 @@ const Board = (props) => {
   return (
     <div>
       <div className={classes.boardHeader}>
-        <SwitchBoard saveBoardToStorage={saveBoardToStorage} />
+        <SwitchBoard />
         <BoardTitle
           title={board.title}
           onSaveNewBoardTitle={onSaveNewBoardTitle}
@@ -67,12 +62,7 @@ const Board = (props) => {
         {board &&
           board.columns &&
           board.columns.map((column, index) => (
-            <Column
-              column={column}
-              onSaveBoard={saveBoardToStorage}
-              columnIndex={index}
-              key={column.position}
-            />
+            <Column column={column} columnIndex={index} key={column.position} />
           ))}
         {!addingColumn && (
           <button className={classes.addBtn} onClick={addNewColumn}>

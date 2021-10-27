@@ -15,7 +15,6 @@ const SwitchBoard = (props) => {
         columns: [],
       },
     });
-    //props.saveBoardToStorage();
   };
 
   const switchBoard = (index) => {
